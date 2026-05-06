@@ -1,0 +1,133 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT'z Nokibhexa Game Crash</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-user-select:none;user-select:none}
+body{font-family:Inter,sans-serif;background:#160b27;color:#f5f1ff;min-height:100vh;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(22,11,39,.85);border-bottom:1px solid #2e1d4a;padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700}
+.logo .ic{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#d946ef,#8b5cf6);display:grid;place-items:center;font-size:20px}
+.grad{background:linear-gradient(135deg,#d946ef,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+header{text-align:center;padding:60px 20px 40px;background:radial-gradient(ellipse at 20% 0%,rgba(217,70,239,.3),transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(34,211,238,.2),transparent 55%)}
+header h1{font-family:Bangers,sans-serif;font-size:clamp(36px,7vw,72px);letter-spacing:.04em;background:linear-gradient(135deg,#d946ef,#22d3ee,#f97316);-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{margin-top:12px;font-weight:600;font-size:18px;color:#e9defc}
+.search{margin:24px auto 0;max-width:420px}
+.search input{width:100%;padding:14px 18px;border-radius:16px;border:1px solid #3b275f;background:rgba(33,18,58,.8);color:#fff;font-size:14px;outline:none}
+.search input:focus{border-color:#d946ef}
+.cats{margin-top:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.cats button{padding:7px 16px;border-radius:999px;border:1px solid #3b275f;background:rgba(33,18,58,.6);color:#bda9da;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.cats button.on{background:linear-gradient(135deg,#d946ef,#8b5cf6);color:#fff;border-color:transparent}
+main{max-width:1200px;margin:0 auto;padding:30px 20px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.card{position:relative;border:none;padding:2.5px;border-radius:18px;background:linear-gradient(135deg,var(--c1),var(--c2));cursor:pointer;text-align:left;transition:transform .3s,box-shadow .3s;color:inherit;font-family:inherit}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(217,70,239,.25)}
+.card>div{background:linear-gradient(160deg,#241040,#1a0b32);border-radius:15px;overflow:hidden}
+.thumb{position:relative;aspect-ratio:16/10;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .thumb img{transform:scale(1.08)}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(22,11,39,.9),transparent 60%)}
+.cat{position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;color:#fff;z-index:2}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;z-index:3;font-weight:700;color:#fff;background:linear-gradient(135deg,#d946ef,#8b5cf6);padding:10px 22px;border-radius:999px;font-size:14px;white-space:nowrap}
+.card:hover .play{opacity:1}
+.meta{padding:14px}
+.meta h3{font-size:15px;font-weight:700;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta p{font-size:12px;color:#a89cc4;line-height:1.4}
+footer{border-top:1px solid #2e1d4a;padding:24px;text-align:center;font-size:13px;color:#8a7eaa}
+.char-wrap{max-width:1100px;margin:0 auto;padding:40px 24px}
+.char-row{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.char-row.rev{flex-direction:row-reverse}
+.char-pic{width:200px;height:200px;object-fit:contain;flex-shrink:0;mix-blend-mode:screen;filter:contrast(1.1) brightness(1.05)}
+.char-body{flex:1;min-width:220px}
+.char-body h2{font-family:Bangers,sans-serif;font-size:clamp(22px,3.5vw,38px);letter-spacing:.04em;margin-bottom:10px}
+.signboard{display:inline-block;background:linear-gradient(135deg,#d946ef,#8b5cf6);color:#fff;font-family:Bangers,sans-serif;font-size:clamp(18px,2.5vw,28px);padding:12px 24px;border-radius:14px;letter-spacing:.05em;box-shadow:0 4px 20px rgba(217,70,239,.45);margin-bottom:10px}
+.signboard2{display:inline-block;background:linear-gradient(135deg,#f97316,#fbbf24);color:#160b27;font-family:Bangers,sans-serif;font-size:clamp(18px,2.5vw,28px);padding:12px 24px;border-radius:14px;letter-spacing:.05em;box-shadow:0 4px 20px rgba(249,115,22,.45);margin-bottom:10px}
+.bubble{display:inline-block;background:rgba(255,255,255,.07);border:1px solid #3b275f;border-radius:14px;padding:12px 18px;font-size:15px;color:#e9defc;font-weight:600;line-height:1.5;margin-bottom:10px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#3b275f,transparent);margin:8px 24px}
+@media(max-width:600px){.char-row,.char-row.rev{flex-direction:column;text-align:center}.char-pic{width:140px;height:140px}}
+</style></head>
+<body oncontextmenu="return false">
+<nav>
+  <div class="logo"><div class="ic">&#127918;</div><span>IT'z <span class="grad">Nokibhexa</span></span></div>
+  <div style="font-size:12px;color:#a89cc4">17 games &middot; Free to play</div>
+</nav>
+<div class="char-wrap"><div class="char-row">
+  <img class="char-pic" src="https://media.base44.com/images/public/user_69f52690c9d0c3ccc2413f41/cb64326d5_image.png" alt="char1" draggable="false">
+  <div class="char-body">
+    <h2 class="grad">Welcome to the Game Zone!</h2>
+    <div class="signboard">&#127918; Download It &amp; Fun! &#127918;</div>
+    <p style="color:#c4b5e0;font-size:15px;margin-top:8px">Your favorite pixel character invites you to explore an amazing collection of free games!</p>
+  </div>
+</div></div>
+<div class="divider"></div>
+<div class="char-wrap"><div class="char-row rev">
+  <img class="char-pic" src="https://media.base44.com/images/public/user_69f52690c9d0c3ccc2413f41/7c2a85dfd_image.png" alt="char2" draggable="false">
+  <div class="char-body">
+    <h2 class="grad">Check Out These Games!</h2>
+    <div class="bubble">&#128071; Download it! All games are free to play! &#128071;</div>
+    <p style="color:#c4b5e0;font-size:15px">Click any game below &mdash; just pure fun!</p>
+  </div>
+</div></div>
+<div class="divider"></div>
+<header>
+  <h1>IT'z Nokibhexa Game Crash</h1>
+  <p>&#127918; Download the games and enjoy &#127918;</p>
+  <div class="search"><input id="q" placeholder="Search games..."></div>
+  <div class="cats" id="cats">
+    <button class="on" data-cat="All">All</button>
+    <button data-cat="Action">Action</button>
+    <button data-cat="Puzzle">Puzzle</button>
+    <button data-cat="Racing">Racing</button>
+    <button data-cat="Strategy">Strategy</button>
+    <button data-cat="Arcade">Arcade</button>
+    <button data-cat="Adventure">Adventure</button>
+  </div>
+</header>
+<main><div class="grid" id="grid">
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/143931940_HexaEmpire.html" style="--c1:#d946ef;--c2:#8b5cf6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/632ca5947_1000152743.png" alt="Hexa Empire" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#d946ef,#8b5cf6)">Strategy</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hexa Empire</h3><p>Build your house and fight</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/58fe66271_FreeFire_vs_PUBG_responsive.html" style="--c1:#d946ef;--c2:#8b5cf6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/90d19da53_1000152742.jpg" alt="Free Fire vs PUBG" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#d946ef,#8b5cf6)">Strategy</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Free Fire vs PUBG</h3><p>PUBG player vs Free Fire player</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/046832ad9_hexa_arcade_offline.html" style="--c1:#22d3ee;--c2:#34d399"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/75676554c_86ada7e4-bcf6-4d60-b7a8-755dbe021125.jfif" alt="Hexa Arcade Offline" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#22d3ee,#34d399)">Puzzle</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hexa Arcade Offline</h3><p>An offline arcade adventure</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/c315c1f8a_hexa_arcade_online.html" style="--c1:#22d3ee;--c2:#34d399"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/9a4b393eb_b879ad0b-9302-4d95-a758-de63c6da918f.jfif" alt="Hexa Arcade Online" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#22d3ee,#34d399)">Puzzle</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hexa Arcade Online</h3><p>Online based arcade game</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/fb554a115_index.html" style="--c1:#d946ef;--c2:#8b5cf6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/0b3ee5a0e_1000152737.jpg" alt="Snake Battle Royal" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#d946ef,#8b5cf6)">Strategy</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Snake Battle Royal</h3><p>Snake Battle Royal — Hard mode</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/2b66bf09f_index.html" style="--c1:#22d3ee;--c2:#34d399"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/3c82a3e40_1000152739.jpg" alt="Save the Princess" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#22d3ee,#34d399)">Puzzle</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Save the Princess</h3><p>Save the princess from danger</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/1a72cda69_index.html" style="--c1:#34d399;--c2:#14b8a6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/eeb40771d_1000152738.jpg" alt="Find a Girl" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#34d399,#14b8a6)">Adventure</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Find a Girl</h3><p>Let's find her.</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/240a8394c_index.html" style="--c1:#d946ef;--c2:#8b5cf6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/9ff5dfee5_1000152737.jpg" alt="Snake Battle Royal v2" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#d946ef,#8b5cf6)">Strategy</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Snake Battle Royal v2</h3><p>Made for your amusement</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/35a641299_index.html" style="--c1:#f43f5e;--c2:#f97316"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/9a56b4a98_1000152736.jpg" alt="Plane Fight 2026" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#f43f5e,#f97316)">Action</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Plane Fight 2026</h3><p>Intro level dogfight game</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/da81a92e4_index.html" style="--c1:#ec4899;--c2:#a855f7"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/007ab3e71_1000152735.png" alt="Hero Fighters — Slow Motion" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#ec4899,#a855f7)">Arcade</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hero Fighters — Slow Motion</h3><p>Slow-mo hero brawler</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/aa424fb11_index.html" style="--c1:#fbbf24;--c2:#ef4444"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/4b41a4fe2_1000152733.jpg" alt="Honey Badger vs Fox" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#fbbf24,#ef4444)">Racing</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Honey Badger vs Fox</h3><p>High-speed racing game</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/7979f8310_index.html" style="--c1:#34d399;--c2:#14b8a6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/0dd8bf207_1000152732.jpg" alt="Hero Fighters Ultra Power" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#34d399,#14b8a6)">Adventure</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hero Fighters Ultra Power</h3><p>Fight with your heroes</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/d414ae258_index.html" style="--c1:#f43f5e;--c2:#f97316"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/5791010a9_1000152731.jpg" alt="Hero Fighters" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#f43f5e,#f97316)">Action</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hero Fighters</h3><p>Let's fight with heroes</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/b08232003_index.html" style="--c1:#fbbf24;--c2:#ef4444"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/a0dde940f_1000152730.jpg" alt="Car Rusher" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#fbbf24,#ef4444)">Racing</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Car Rusher</h3><p>Save the car from the crash</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/b2f8ed5cd_index.html" style="--c1:#34d399;--c2:#14b8a6"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/d52be6406_1000152729.jpg" alt="Fox vs Bear" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#34d399,#14b8a6)">Adventure</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Fox vs Bear</h3><p>A playful kids adventure</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/2d59df424_HexaFlimtof_latest.html" style="--c1:#f43f5e;--c2:#f97316"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/071a1fded_WhatsAppImage2026-05-06at74336PM.jpeg" alt="Hexa Flimtof Battle Royal" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#f43f5e,#f97316)">Action</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hexa Flimtof Battle Royal</h3><p>A battle royal showdown</p></div></div></button>
+<button class="card" data-url="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/f3c573185_HexaMilestoneLatest.html" style="--c1:#f43f5e;--c2:#f97316"><div><div class="thumb"><img src="https://base44.app/api/apps/69fb3e0e65b2d21cfe950bc2/files/mp/public/69fb3e0e65b2d21cfe950bc2/1a86191e3_WhatsAppImage2026-05-06at73337PM.jpeg" alt="Hexa Milestone Battle Royal" draggable="false"><span class="cat" style="background:linear-gradient(135deg,#f43f5e,#f97316)">Action</span><span class="play">&#9654; Play Now</span></div><div class="meta"><h3>Hexa Milestone Battle Royal</h3><p>Battle royal milestone game</p></div></div></button>
+</div></main>
+<div class="divider"></div>
+<div class="char-wrap"><div class="char-row">
+  <img class="char-pic" src="https://media.base44.com/images/public/user_69f52690c9d0c3ccc2413f41/dd55f3d1f_image.png" alt="char3" draggable="false">
+  <div class="char-body">
+    <h2 style="font-family:Bangers,sans-serif;font-size:clamp(22px,3.5vw,38px);letter-spacing:.04em;margin-bottom:10px;background:linear-gradient(135deg,#34d399,#14b8a6);-webkit-background-clip:text;background-clip:text;color:transparent">Every Game, Handpicked!</h2>
+    <div class="bubble">&#128170; I've got my hands on every game &mdash; all top-quality fun!</div>
+    <p style="color:#c4b5e0;font-size:15px;margin-top:8px">Action, puzzle, racing &mdash; every game is carefully selected for maximum enjoyment!</p>
+  </div>
+</div></div>
+<div class="divider"></div>
+<div class="char-wrap"><div class="char-row rev">
+  <img class="char-pic" src="https://media.base44.com/images/public/user_69f52690c9d0c3ccc2413f41/ebcb59dd3_image.png" alt="char4" draggable="false" style="mix-blend-mode:normal;filter:none">
+  <div class="char-body">
+    <h2 style="font-family:Bangers,sans-serif;font-size:clamp(22px,3.5vw,38px);letter-spacing:.04em;margin-bottom:10px;background:linear-gradient(135deg,#f97316,#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent">Hey There! &#128075;</h2>
+    <div class="signboard2">&#127918; Game for Amusement! &#127918;</div>
+    <p style="color:#c4b5e0;font-size:15px;margin-top:8px">Hi everyone! All these games are made purely for your amusement. Have a blast &mdash; it's all free!</p>
+  </div>
+</div></div>
+<footer>&copy; 2026 IT'z Nokibhexa Game Crash &mdash; Built for players.</footer>
+<script>
+var grid=document.getElementById("grid"),q=document.getElementById("q"),cats=document.getElementById("cats");
+var active="All",query="";
+function filter(){[].slice.call(grid.children).forEach(function(c){var t=c.querySelector("h3").textContent.toLowerCase()+" "+c.querySelector("p").textContent.toLowerCase();var cat=c.querySelector(".cat").textContent;c.style.display=((active==="All"||cat===active)&&(!query||t.includes(query)))?"":"none"})}
+q.addEventListener("input",function(e){query=e.target.value.toLowerCase();filter()});
+cats.addEventListener("click",function(e){if(e.target.tagName==="BUTTON"){[].slice.call(cats.children).forEach(function(b){b.classList.remove("on")});e.target.classList.add("on");active=e.target.dataset.cat;filter()}});
+grid.addEventListener("click",function(e){var c=e.target.closest(".card");if(c){window.open(c.dataset.url,"_blank","noopener,noreferrer")}});
+document.addEventListener("contextmenu",function(e){e.preventDefault()});
+document.addEventListener("keydown",function(e){var k=e.key.toLowerCase();if(e.ctrlKey&&["u","s","p"].indexOf(k)>-1){e.preventDefault();return false;}if(e.ctrlKey&&e.shiftKey&&["i","j","c"].indexOf(k)>-1){e.preventDefault();return false;}if(k==="f12"){e.preventDefault();return false;}});
+</script></body></html>
